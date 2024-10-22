@@ -99,7 +99,7 @@ public class SafeInput
      * @param prompt prompts user for int within range
      * @param low the low inclusive low bound
      * @param high the high inclusive high bound
-     * @return
+     * @return returns user val
      */
     public static int getRangedInt(Scanner pipe, String prompt, int low, int high)
     {

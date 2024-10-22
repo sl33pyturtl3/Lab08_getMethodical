@@ -9,35 +9,31 @@ public class DevTest {
         int favNum = 0;
         double salary = 0;
         double constrained = 0; //must be between 100 and 10,000
+        boolean Yn = false;
 
-        /*
 
+    /*
         firstName = getNonZeroLenString(in, "Enter your first name");
-
         System.out.println("Fname is " + firstName);
 
-         */
-
-        /*
 
         age = getInt(in,"Enter your age");
         System.out.println("You said your age was " + age);
 
-         */
-
-        /*
         salary = getDouble(in, "Enter your salary");
         System.out.println("Salary is " + salary);
 
-         */
-
-        /*
         favNum = getRangedInt(in,"Enter your favorite number:" , 1, 10);
         System.out.println("Favenum: " +favNum);
 
-         */
-
         constrained = getRangedDouble(in,"Enter the constrained double", 100, 10000) ;
+        System.out.println("Double is " + constrained);
+
+
+        Yn = getYNConfirm(in,"Enter [Y/N]");
+        System.out.println("Y/N is: " + Yn);
+*/
+
 
     }
 
@@ -61,8 +57,8 @@ public class DevTest {
     }
 
     /**
+     *gets int value from user and console with no constraint
      *
-     * gets int value from user and console with no constraint
      * @param pipe scanner used for input
      * @param prompt prompts user for input
      * @return an int of any value
@@ -96,9 +92,9 @@ public class DevTest {
     /**
      * gets a double value through prompt and scanner
      *
-     * @param pipe
-     * @param prompt
-     * @return
+     * @param pipe scanner for int
+     * @param prompt prompts user for input
+     * @return returns user input
      */
     public static int getDouble(Scanner pipe, String prompt)
     {
@@ -133,7 +129,7 @@ public class DevTest {
      * @param prompt prompts user for int within range
      * @param low the low inclusive low bound
      * @param high the high inclusive high bound
-     * @return
+     * @return returns user input
      */
     public static int getRangedInt(Scanner pipe, String prompt, int low, int high)
     {
@@ -205,6 +201,49 @@ public class DevTest {
             {
                 trash = pipe.nextLine();
                 System.out.println("Please enter a valid double not " + trash);
+            }
+
+        }while(!done);
+
+        return retVal;
+    }
+
+    /**
+     * Gets a Y or an N from the user and returns the equivalent
+     *
+     * @param pipe scanner for input
+     * @param prompt prompts user for input
+     * @return returns user input
+     */
+    public static boolean getYNConfirm(Scanner pipe, String prompt)
+    {
+        String YNResponse = "";
+        boolean retVal = false;
+        boolean done = false;
+
+        do
+        {
+            System.out.print(prompt + ": ");
+            YNResponse = pipe.nextLine();
+
+            if (YNResponse.matches("[YyNn]"))
+            {
+                System.out.println("You must enter [Y/N]:");
+            }
+            else
+            {
+                done = true;
+                switch (YNResponse)
+                {
+                    case "Y":
+                    case "y":
+                        retVal = true;
+                        break;
+                    case "N":
+                    case "n":
+                        retVal = false;
+                        break;
+                }
             }
 
         }while(!done);
